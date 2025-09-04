@@ -1,4 +1,4 @@
-using DelimitedFiles, InlineStrings, Downloads, ProgressMeter, Glob
+using DelimitedFiles, InlineStrings, Downloads, ProgressMeter
 
 isotopes = vec(readdlm("isotopes.txt", String7))
 
@@ -15,10 +15,12 @@ for isotope in isotopes, i in [0, 2]
     run(`unzip -o data/raw/$(isotope)_$(i)vbb.zip -d data/decompressed/`)
 end
 
-# I stop here; it's time to figure out what DBDG.jl expects
+# 76Ge -> Ge76 etc. This way, one just can write :Ge76, etc, in the code,
+# instead of having to write Symbol("76Ge")
+modified_names = String7.(replace.(isotopes, r"(\d+)([A-Za-z]+)" => s"\2\1"))
 mkpath("data/KotilaIachello2012")
-for isotope in isotopes
-    dest = mkpath("data/KotilaIachello2012/$(isotope)")
+for (isotope, modified_name) in zip(isotopes, modified_names)
+    dest = mkpath("data/KotilaIachello2012/$(modified_name)")
     mv("data/decompressed/$(isotope)_ses_0v.txt", joinpath(dest, "ses_0v.txt"))
     mv("data/decompressed/$(isotope)_cor_0v.txt", joinpath(dest, "cor_0v.txt"))
     mv("data/decompressed/$(isotope)_ses.txt", joinpath(dest, "ses.txt"))
