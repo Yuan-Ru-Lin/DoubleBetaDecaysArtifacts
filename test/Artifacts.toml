@@ -11,3 +11,10 @@ git-tree-sha1 = "83e701fe36d459b06b6f55b0f10d071d93618fbf"
     [[76Ge_2vbb.download]]
     url = "file:////global/u2/y/yuanru/artifactstest/76Ge_2vbb.tar.gz"
     sha256 = "6bbac0a31f8eafe16a26a610ea2b293db11ee7c49b4420fa6ff94e846a5f4d6a"
+
+[KotilaIachello2012]
+git-tree-sha1 = "3a547ae01d774ae07879e4dbdf8ef65b400728d2"
+
+    [[KotilaIachello2012.download]]
+    url = ""
+    sha256 = "e81e6430f4f725c1401953e287beb54704440b31a856a4791b594d66a7fc0ad2"
